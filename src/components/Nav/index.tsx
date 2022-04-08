@@ -7,13 +7,9 @@ const Nav = () => {
 
   return (
     <StyledNav>
-      <StyledLogo
-        onClick={() =>
-          navigate("/content?disable=false&reset=true&status=setcontents")
-        }
-      >
+      <StyledLogo onClick={() => navigate("/")}>
         <NavLogo
-          src="https://cdn.imweb.me/thumbnail/20211027/3ef8c1a4f5c8b.png"
+          src="https://discussionskorea.apple.com/public/assets/avatars/SYSTEM_DEFAULT_AVATAR_EN_4.png"
           alt="LOGO"
         />
         <NavTitle>soosoo</NavTitle>

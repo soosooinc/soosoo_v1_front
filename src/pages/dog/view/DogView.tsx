@@ -1,5 +1,9 @@
 const DogView = () => {
-  return <></>;
+  return (
+    <>
+      <p>강아지</p>
+    </>
+  );
 };
 
 export default DogView;

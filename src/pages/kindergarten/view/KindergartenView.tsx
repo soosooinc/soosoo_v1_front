@@ -1,5 +1,9 @@
 const KindergartenView = () => {
-  return <></>;
+  return (
+    <>
+      <p>유치원</p>
+    </>
+  );
 };
 
 export default KindergartenView;

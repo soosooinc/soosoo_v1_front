@@ -1,24 +1,8 @@
-import React from "react";
-import MainController from "../controller/MainController";
+import { memo } from "react";
+import { StyledUploadWrapper } from "../style/MainStyles";
 
-interface props {}
-
-const MainView = ({}: props) => {
-  const { userName, getUserInfo } = MainController({});
-  return (
-    <div>
-      <p>main view</p>
-      <button
-        style={{ height: 100 }}
-        onClick={() => {
-          getUserInfo();
-        }}
-      >
-        이름
-      </button>
-      {userName !== "" && <p>{userName}</p>}
-    </div>
-  );
+const MainView = () => {
+  return <StyledUploadWrapper>{"홈"}</StyledUploadWrapper>;
 };
 
-export default MainView;
+export default memo(MainView);

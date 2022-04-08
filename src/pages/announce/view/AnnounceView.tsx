@@ -1,5 +1,9 @@
 const AnnounceView = () => {
-  return <></>;
+  return (
+    <>
+      <p>알림장</p>
+    </>
+  );
 };
 
 export default AnnounceView;

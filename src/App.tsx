@@ -17,8 +17,7 @@ const App = () => {
       <SideBar />
       <Routes>
         {/* <Route path="/" element={<Pages.LoginView />} /> */}
-        {/* <Route path="/main" element={<Screens.MainScreen />} /> */}
-        <Route path="/" element={<Screens.MainScreen />} />
+        <Route path="/main" element={<Screens.MainScreen />} />
         <Route path="/kindergarten" element={<Screens.AnnounceScreen />} />
         <Route path="/notice" element={<Screens.DogScreen />} />
         <Route path="/announce" element={<Screens.KindergartenScreen />} />

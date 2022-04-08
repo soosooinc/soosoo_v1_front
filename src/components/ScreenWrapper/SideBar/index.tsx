@@ -2,7 +2,7 @@ import { StyledSideBar } from "./styles";
 import { NavLink } from "react-router-dom";
 import SideBarWrapper from "./SideBarWrapper";
 import { memo } from "react";
-import usePathParams from "../../common/usePathParams";
+import usePathParams from "../../../common/usePathParams";
 
 const SideBar = () => {
   const path: string = usePathParams();

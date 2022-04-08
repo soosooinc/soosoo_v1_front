@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
-import SideBar from "./components/SideBar";
+import SideBar from "./components/ScreenWrapper/SideBar";
 import * as Screens from "./screens";
 
 const App = () => {
@@ -18,10 +18,10 @@ const App = () => {
       <Routes>
         {/* <Route path="/" element={<Pages.LoginView />} /> */}
         <Route path="/main" element={<Screens.MainScreen />} />
-        <Route path="/kindergarten" element={<Screens.AnnounceScreen />} />
-        <Route path="/notice" element={<Screens.DogScreen />} />
-        <Route path="/announce" element={<Screens.KindergartenScreen />} />
-        <Route path="/dog" element={<Screens.NoticeScreen />} />
+        <Route path="/kindergarten" element={<Screens.KindergartenScreen />} />
+        <Route path="/notice" element={<Screens.NoticeScreen />} />
+        <Route path="/announce" element={<Screens.AnnounceScreen />} />
+        <Route path="/dog" element={<Screens.DogScreen />} />
         {/* <Route path="/*" element={<Screens.NotFoundScreen />} /> */}
       </Routes>
     </>

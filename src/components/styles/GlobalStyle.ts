@@ -80,8 +80,4 @@ code {
   --toastify-color-success: #ff9248;
 }
 
-.Toastify__toast-container--top-right {
-  // 모달컴포넌트에서 react-toasify 가 가리는 현상 방지용
-    z-index: 999999;
-}
 `;

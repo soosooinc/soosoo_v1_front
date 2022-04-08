@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import customAxios from "../../../common/axiosCustom";
 import httpGet from "../../../common/httpGet";
 
-interface props {}
+const MainController = () => {
+  const [userImage, setUserImage] = useState<string>("");
 
-const MainController = ({}: props) => {
-  const [userName, setUserName] = useState<any>("");
+  useEffect(() => {
+    getUserImage();
+  }, []);
 
-  const getUserInfo = async () => {
-    const resultData = await httpGet("user/info?userId=1");
-    setUserName(resultData.name);
+  const getUserImage = async (imageId?: number) => {
+    imageId = 1;
+    const resultData = await httpGet(`image/getImage?imageId=${imageId}`);
+    setUserImage(resultData);
   };
 
-  return { userName, getUserInfo };
+  return {
+    userImage,
+  };
 };
 
 export default MainController;

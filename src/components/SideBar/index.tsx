@@ -2,10 +2,10 @@ import { StyledSideBar } from "./styles";
 import { NavLink } from "react-router-dom";
 import SideBarWrapper from "./SideBarWrapper";
 import { memo } from "react";
-import useQueryString from "../../common/useQueryString";
+import usePathParams from "../../common/usePathParams";
 
 const SideBar = () => {
-  const { status } = useQueryString();
+  const path: string = usePathParams();
 
   return (
     <StyledSideBar>
@@ -13,7 +13,7 @@ const SideBar = () => {
         <NavLink
           to="/main"
           className={
-            status === "main" ? "nested-nav-link-active" : "nested-nav-link"
+            path === "/main" ? "nested-nav-link-active" : "nested-nav-link"
           }
         >
           홈
@@ -21,7 +21,7 @@ const SideBar = () => {
         <NavLink
           to="/kindergarten"
           className={
-            status === "kindergarten"
+            path === "/kindergarten"
               ? "nested-nav-link-active"
               : "nested-nav-link"
           }
@@ -31,7 +31,7 @@ const SideBar = () => {
         <NavLink
           to="/notice"
           className={
-            status === "notice" ? "nested-nav-link-active" : "nested-nav-link"
+            path === "/notice" ? "nested-nav-link-active" : "nested-nav-link"
           }
         >
           공지사항
@@ -39,7 +39,7 @@ const SideBar = () => {
         <NavLink
           to="/announce"
           className={
-            status === "announce" ? "nested-nav-link-active" : "nested-nav-link"
+            path === "/announce" ? "nested-nav-link-active" : "nested-nav-link"
           }
         >
           알림장
@@ -47,7 +47,7 @@ const SideBar = () => {
         <NavLink
           to="/dog"
           className={
-            status === "dog" ? "nested-nav-link-active" : "nested-nav-link"
+            path === "/dog" ? "nested-nav-link-active" : "nested-nav-link"
           }
         >
           우리 강아지들

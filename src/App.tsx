@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
-import SideBar from "./components/ScreenWrapper/SideBar";
+import SideBar from "./components/SideBar";
 import * as Screens from "./screens";
 
 const App = () => {

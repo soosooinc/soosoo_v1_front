@@ -1,8 +1,8 @@
 import httpGet from "common/httpGet";
 import { useEffect, useState } from "react";
 
-const kindergartenController = () => {
-    const [teachersInfo, setTeachersInfo] = useState();
+const KindergartenController = () => {
+    const [teachersInfo, setTeachersInfo] = useState<any[]>();
 
     useEffect(() => {
         getTeachersInfo();
@@ -10,7 +10,7 @@ const kindergartenController = () => {
 
     const getTeachersInfo = async (kindergartenId?: number) => {
         kindergartenId = 1;
-        const resultData = await httpGet(`kinergarten/getTeacherInfo?kindergartenId=${kindergartenId}`);
+        const resultData = await httpGet(`kindergarten/getTeacherInfo?kindergartenId=${kindergartenId}`);
         setTeachersInfo(resultData);
     };
 
@@ -19,4 +19,4 @@ const kindergartenController = () => {
     };
 };
 
-export default kindergartenController;
+export default KindergartenController;

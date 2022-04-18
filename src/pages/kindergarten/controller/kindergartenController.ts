@@ -2,7 +2,7 @@ import httpGet from "common/httpGet";
 import { useEffect, useState } from "react";
 
 const KindergartenController = () => {
-    const [teachersInfo, setTeachersInfo] = useState<any[]>();
+    const [teachersInfo, setTeachersInfo] = useState<any>([]);
 
     useEffect(() => {
         getTeachersInfo();

@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 
 const KindergartenController = () => {
     const [teachersInfo, setTeachersInfo] = useState<any>([]);
+    const [kindergartenInfo, setKindergartenInfo] = useState<any>([]);
 
     useEffect(() => {
         getTeachersInfo();
+        getKindergartenInfo();
     }, []);
 
     const getTeachersInfo = async (kindergartenId?: number) => {
@@ -14,8 +16,15 @@ const KindergartenController = () => {
         setTeachersInfo(resultData);
     };
 
+    const getKindergartenInfo = async (kindergartenId?: number) => {
+        kindergartenId = 1;
+        const resultData = await httpGet(`kindergarten/info?kindergartenId=${kindergartenId}`);
+        setKindergartenInfo(resultData);
+    };
+
     return {
-        teachersInfo
+        teachersInfo,
+        kindergartenInfo
     };
 };
 

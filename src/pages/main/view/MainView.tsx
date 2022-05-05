@@ -6,10 +6,13 @@ import {
   TopWrapper,
   UserName,
   UserKindergartenName,
+  BottomWrapper,
+  NoticeWrapper,
 } from "../style/styles";
+import MainNoticeView from "./MainNoticeView";
 
 const MainView = () => {
-  const { userInfo } = MainController();
+  const { userInfo, mainNoticeHeaderTag } = MainController();
   return (
     <StyledScreenWrapper>
       <TopWrapper>
@@ -17,6 +20,11 @@ const MainView = () => {
         <UserName>{userInfo.name}</UserName>
         <UserKindergartenName>{userInfo.kindergartenName}</UserKindergartenName>
       </TopWrapper>
+      <BottomWrapper>
+        <NoticeWrapper>
+          <MainNoticeView mainNoticeHeaderTag={mainNoticeHeaderTag} />
+        </NoticeWrapper>
+      </BottomWrapper>
     </StyledScreenWrapper>
   );
 };

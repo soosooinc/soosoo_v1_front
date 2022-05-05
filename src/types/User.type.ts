@@ -1,10 +1,10 @@
 export interface IUserInfo {
   userId: Number;
-  kindergartenName: String;
+  kindergartenName: string;
   imageUrl: string | undefined;
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   type: Number;
-  phone: String | undefined;
-  email: String | undefined;
+  phone: string | undefined;
+  email: string | undefined;
 }

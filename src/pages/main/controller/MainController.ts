@@ -1,22 +1,37 @@
-import React, { useEffect, useState } from "react";
-import customAxios from "../../../common/axiosCustom";
-import httpGet from "../../../common/httpGet";
+import React, { useCallback, useEffect, useState } from "react";
+import { getUserInfoApi } from "../../../apis/user/UserApis";
+import { IUserInfo } from "../../../types/User.type";
+import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
+import { userInfoAtom } from "../../../store/user";
 
 const MainController = () => {
-  const [userImage, setUserImage] = useState<string>("");
+  const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(userInfoAtom);
 
   useEffect(() => {
-    getUserImage();
+    getUserInfo(3);
   }, []);
 
-  const getUserImage = async (imageId?: number) => {
-    imageId = 1;
-    const resultData = await httpGet(`image/getImage?imageId=${imageId}`);
-    setUserImage(resultData);
-  };
+  const getUserInfo = useCallback(
+    async (userId: number): Promise<void> => {
+      try {
+        const data = await getUserInfoApi(3);
+        setUserInfo({
+          userId: data.userId,
+          kindergartenName: data.kindergartenName,
+          imageUrl: data.imageUrl,
+          id: data.id,
+          name: data.name,
+          type: data.type,
+          phone: data.phone ? data.phone : undefined,
+          email: data.email ? data.email : undefined,
+        });
+      } catch (e: any) {}
+    },
+    [setUserInfo]
+  );
 
   return {
-    userImage,
+    userInfo,
   };
 };
 

@@ -1,13 +1,30 @@
 import { memo } from "react";
 import { StyledScreenWrapper } from "../../../components/ScreenWrapper/styles";
 import MainController from "../controller/MainController";
+import {
+  UserImg,
+  TopWrapper,
+  UserName,
+  UserKindergartenName,
+  BottomWrapper,
+  NoticeWrapper,
+} from "../style/styles";
+import MainNoticeView from "./MainNoticeView";
 
 const MainView = () => {
-  const { userInfo } = MainController();
+  const { userInfo, mainNoticeHeaderTag } = MainController();
   return (
     <StyledScreenWrapper>
-      {"홈"}
-      <img src={userInfo.imageUrl} style={{ height: 300, width: 300 }} />
+      <TopWrapper>
+        <UserImg src={userInfo.imageUrl} />
+        <UserName>{userInfo.name}</UserName>
+        <UserKindergartenName>{userInfo.kindergartenName}</UserKindergartenName>
+      </TopWrapper>
+      <BottomWrapper>
+        <NoticeWrapper>
+          <MainNoticeView mainNoticeHeaderTag={mainNoticeHeaderTag} />
+        </NoticeWrapper>
+      </BottomWrapper>
     </StyledScreenWrapper>
   );
 };

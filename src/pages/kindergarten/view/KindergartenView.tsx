@@ -1,5 +1,6 @@
 import { StyledScreenWrapper } from "../../../components/ScreenWrapper/styles";
 import KindergartenController from "../controller/kindergartenController";
+import Button from "../../../components/Button/index"
 
 const pageTemp = (teacher: any, index: any) => {
   return (
@@ -20,6 +21,8 @@ const pageKindergartenInfo = (kindergartenInfo: any) => {
   );
 };
 
+const buttonClickEvent = () => console.log("유치원에서 클릭했다.");
+
 const KindergartenView = () => {
   const { teachersInfo, kindergartenInfo } = KindergartenController();
   if (teachersInfo === undefined || kindergartenInfo === undefined) {
@@ -28,9 +31,12 @@ const KindergartenView = () => {
     return (
       <StyledScreenWrapper>
         {pageKindergartenInfo(kindergartenInfo)}
+        <Button text="LogOut" onClick={buttonClickEvent}></Button>
+
         {teachersInfo.map((teacher: any, index: number) =>
           pageTemp(teacher, index)
         )}
+        
       </StyledScreenWrapper>
     );
   }

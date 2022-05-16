@@ -7,6 +7,7 @@ import { MainNoticeHeaderTag } from "../../../constants/constants";
 
 const MainController = () => {
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(userInfoAtom);
+  const [selectedNoticeHeaderTag, setSelectedNoticeHeaderTag] = useState<number>(0);
   const mainNoticeHeaderTag = MainNoticeHeaderTag;
 
   useEffect(() => {
@@ -35,6 +36,8 @@ const MainController = () => {
   return {
     userInfo,
     mainNoticeHeaderTag,
+    selectedNoticeHeaderTag,
+    setSelectedNoticeHeaderTag
   };
 };
 

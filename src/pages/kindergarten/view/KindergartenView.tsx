@@ -1,5 +1,8 @@
+import kindergartenController from "../controller/kindergartenController";
+
 const KindergartenView = () => {
-    return (<></>);
-}
+  const { kindergartenInfo } = kindergartenController();
+  return <></>;
+};
 
 export default KindergartenView;

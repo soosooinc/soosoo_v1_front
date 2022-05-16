@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { getUserInfoApi } from "../../../apis/user/UserApis";
+import { getUserInfoApi } from "../../../apis/UserApis";
 import { IUserInfo } from "../../../types/User.type";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
 import { userInfoAtom } from "../../../store/user";

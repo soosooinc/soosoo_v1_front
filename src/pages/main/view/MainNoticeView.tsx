@@ -11,7 +11,7 @@ const MainNoticeView = ({ mainNoticeHeaderTag }: props) => {
       <NoticeHeader>
         {mainNoticeHeaderTag.map((item: any, index: number) => {
           return (
-            <NoticeHeaderTag>
+            <NoticeHeaderTag key={index.toString()}>
               <span>{item.name}</span>
             </NoticeHeaderTag>
           );

@@ -1,7 +1,16 @@
-import { getKindergartenInfoApi , getTeacherInfoApi } from "../../../apis/KindergartenApis";
+import {
+  getKindergartenInfoApi,
+  getTeacherInfoApi,
+} from "../../../apis/KindergartenApis";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
-import { IKindergartenInfo, ITeacherInfo } from "../../../types/Kindergarten.type";
-import { kindergartenInfoAtom, tacherInfoAtom } from "../../../store/kindergarten";
+import {
+  IKindergartenInfo,
+  ITeacherInfo,
+} from "../../../types/Kindergarten.type";
+import {
+  kindergartenInfoAtom,
+  tacherInfoAtom,
+} from "../../../store/kindergarten";
 import { useCallback, useEffect } from "react";
 
 const kindergartenController = () => {
@@ -32,20 +41,17 @@ const kindergartenController = () => {
         });
       } catch (e: any) {}
     },
-    [setKindergartenInfo]
+    [kindergartenInfo, setKindergartenInfo]
   );
 
   const getTeacherInfo = useCallback(
     async (kindergartenId: number): Promise<void> => {
       try {
-        const data = await getTeacherInfoApi(
-          kindergartenId
-        );
-        console.log('123', data);
+        const data = await getTeacherInfoApi(kindergartenId);
         setTeacherInfo({
           userId: data.userId,
           name: data.name,
-          imageUrl: data.imageUrl
+          imageUrl: data.imageUrl,
         });
       } catch (e: any) {}
     },
@@ -54,7 +60,7 @@ const kindergartenController = () => {
 
   return {
     kindergartenInfo,
-    teacherInfo
+    teacherInfo,
   };
 };
 

@@ -13,11 +13,11 @@ export const kindergartenInfoAtom = atom<IKindergartenInfo>({
   }
 });
 
-export const tacherInfoAtom = atom<ITeacherInfo>({
+export const tacherInfoAtom = atom< ITeacherInfo[]>({
   key: "tacherInfoInfoAtom",
-  default: {
+  default: [{
     userId: 0,
     name: "",
     imageUrl: ""
-  },
+  }],
 });

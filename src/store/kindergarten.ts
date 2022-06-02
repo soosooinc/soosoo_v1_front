@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { IKindergartenInfo } from "../types/Kindergarten.type";
+import { IKindergartenInfo , ITeacherInfo } from "../types/Kindergarten.type";
 
 export const kindergartenInfoAtom = atom<IKindergartenInfo>({
   key: "kindergartenInfoAtom",
@@ -11,4 +11,13 @@ export const kindergartenInfoAtom = atom<IKindergartenInfo>({
     imageId: undefined,
     imageUrl: undefined
   }
+});
+
+export const tacherInfoAtom = atom<ITeacherInfo>({
+  key: "tacherInfoInfoAtom",
+  default: {
+    userId: 0,
+    name: "",
+    imageUrl: ""
+  },
 });

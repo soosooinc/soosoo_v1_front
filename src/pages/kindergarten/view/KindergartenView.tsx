@@ -1,7 +1,7 @@
 import kindergartenController from "../controller/kindergartenController";
 
 const KindergartenView = () => {
-  const { kindergartenInfo } = kindergartenController();
+  const { kindergartenInfo, teacherInfo } = kindergartenController();
   return <></>;
 };
 

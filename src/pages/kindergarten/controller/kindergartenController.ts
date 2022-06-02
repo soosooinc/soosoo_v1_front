@@ -24,15 +24,15 @@ const kindergartenController = () => {
           address: kindergarten.address,
           phone: kindergarten.phone ? kindergarten.phone : undefined,
           imageId: kindergarten.imageId ? kindergarten.imageId : undefined,
-          imageUrl: kindergarten.imageUrl ? kindergarten.imageUrl : undefined,
+          imageUrl: image.imageUrl ? image.imageUrl : undefined
         });
       } catch (e: any) {}
     },
-    [setKindergartenInfo]
+    [kindergartenInfo, setKindergartenInfo]
   );
 
   return {
-    kindergartenInfo,
+    kindergartenInfo
   };
 };
 

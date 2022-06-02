@@ -9,8 +9,8 @@ export const kindergartenInfoAtom = atom<IKindergartenInfo>({
     address: "",
     phone: undefined,
     imageId: undefined,
-    imageUrl: undefined,
-  },
+    imageUrl: undefined
+  }
 });
 
 export const tacherInfoAtom = atom<ITeacherInfo>({

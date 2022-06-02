@@ -7,6 +7,11 @@ export interface IKindergartenInfo {
   imageUrl: string | undefined;
 }
 
+export interface IImageInfo {
+  imageId: number | undefined;
+  imageUrl: string | undefined;
+  type: number;
+}
 export interface ITeacherInfo {
   userId: number;
   name: string;
@@ -15,5 +20,5 @@ export interface ITeacherInfo {
 
 export interface IKindergartenJoinImage {
   kindergarten: IKindergartenInfo;
-  image: ITeacherInfo;
+  image: IImageInfo;
 }

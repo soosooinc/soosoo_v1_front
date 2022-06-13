@@ -1,4 +1,4 @@
-export interface INoticeDto {
+export interface INoticeInfo {
     noticeId: Number;
     imageId: Number;
     topId: Number;

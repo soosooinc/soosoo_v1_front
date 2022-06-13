@@ -4,5 +4,5 @@ export interface INoticeDto {
     topId: Number;
     type: Number;
     mainText: string;
-    subText: string;
+    subText: string | undefined;
 }

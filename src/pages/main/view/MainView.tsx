@@ -7,12 +7,18 @@ import {
   UserName,
   UserKindergartenName,
   BottomWrapper,
-  NoticeWrapper,
+  NoticeWrapper
 } from "../style/styles";
 import MainNoticeView from "./MainNoticeView";
 
 const MainView = () => {
-  const { userInfo, mainNoticeHeaderTag } = MainController();
+  const {
+    userInfo,
+    mainNoticeHeaderTag,
+    selectedNoticeHeaderTag,
+    setSelectedNoticeHeaderTag,
+    movePage
+  } = MainController();
   return (
     <StyledScreenWrapper>
       <TopWrapper>
@@ -22,7 +28,12 @@ const MainView = () => {
       </TopWrapper>
       <BottomWrapper>
         <NoticeWrapper>
-          <MainNoticeView mainNoticeHeaderTag={mainNoticeHeaderTag} />
+          <MainNoticeView
+            mainNoticeHeaderTag={mainNoticeHeaderTag}
+            selectedNoticeHeaderTag={selectedNoticeHeaderTag}
+            setSelectedNoticeHeaderTag={setSelectedNoticeHeaderTag}
+            movePage={movePage}
+          />
         </NoticeWrapper>
       </BottomWrapper>
     </StyledScreenWrapper>

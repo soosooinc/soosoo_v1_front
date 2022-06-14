@@ -1,15 +1,15 @@
 import {
   getKindergartenInfoApi,
-  getTeacherInfoApi,
+  getTeachersInfoApi
 } from "../../../apis/KindergartenApis";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
 import {
   IKindergartenInfo,
-  ITeacherInfo,
+  ITeacherInfo
 } from "../../../types/Kindergarten.type";
 import {
   kindergartenInfoAtom,
-  tacherInfoAtom,
+  tacherInfoAtom
 } from "../../../store/kindergarten";
 import { useCallback, useEffect } from "react";
 
@@ -18,11 +18,11 @@ const kindergartenController = () => {
     useRecoilState<IKindergartenInfo>(kindergartenInfoAtom);
 
   const [teacherInfo, setTeacherInfo] =
-    useRecoilState<ITeacherInfo>(tacherInfoAtom);
+    useRecoilState<ITeacherInfo[]>(tacherInfoAtom);
 
   useEffect(() => {
     getKindergartenInfo(1);
-    getTeacherInfo(1);
+    getTeachersInfo(1);
   }, []);
 
   const getKindergartenInfo = useCallback(
@@ -44,15 +44,21 @@ const kindergartenController = () => {
     [kindergartenInfo, setKindergartenInfo]
   );
 
-  const getTeacherInfo = useCallback(
+  const getTeachersInfo = useCallback(
     async (kindergartenId: number): Promise<void> => {
       try {
-        const data = await getTeacherInfoApi(kindergartenId);
-        setTeacherInfo({
-          userId: data.userId,
-          name: data.name,
-          imageUrl: data.imageUrl,
+        const data = await getTeachersInfoApi(kindergartenId);
+
+        const teacherInfoTemp: ITeacherInfo[] = [];
+        data.forEach((teacherData: ITeacherInfo) => {
+          const dataTemp = {
+            userId: teacherData.userId,
+            name: teacherData.name,
+            imageUrl: teacherData.imageUrl
+          };
+          teacherInfoTemp.push(dataTemp);
         });
+        setTeacherInfo(teacherInfoTemp);
       } catch (e: any) {}
     },
     [teacherInfo, setTeacherInfo]
@@ -60,7 +66,7 @@ const kindergartenController = () => {
 
   return {
     kindergartenInfo,
-    teacherInfo,
+    teacherInfo
   };
 };
 

@@ -1,5 +1,8 @@
 import customAxios from "../common/axiosCustom";
-import { IKindergartenJoinImage , ITeacherInfo } from "../types/Kindergarten.type";
+import {
+  IKindergartenJoinImage,
+  ITeacherInfo
+} from "../types/Kindergarten.type";
 
 export const getKindergartenInfoApi = async (
   kindergartenId: number
@@ -9,9 +12,9 @@ export const getKindergartenInfoApi = async (
   return data.data;
 };
 
-export const getTeacherInfoApi = async (
+export const getTeachersInfoApi = async (
   kindergartenId: number
-): Promise<ITeacherInfo> => {
+): Promise<ITeacherInfo[]> => {
   const url: string = `kindergarten/teacherInfo?kindergartenId=${kindergartenId}`;
   const { data } = await customAxios.get(url);
   return data.data;

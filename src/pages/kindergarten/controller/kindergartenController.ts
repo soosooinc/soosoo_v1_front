@@ -1,40 +1,73 @@
-import { getKindergartenInfoApi } from "../../../apis/KindergartenApis";
+import {
+  getKindergartenInfoApi,
+  getTeachersInfoApi
+} from "../../../apis/KindergartenApis";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
-import {IKindergartenInfo}from "../../../types/Kindergarten.type"
-import {kindergartenInfoAtom} from "../../../store/kindergarten"
+import {
+  IKindergartenInfo,
+  ITeacherInfo
+} from "../../../types/Kindergarten.type";
+import {
+  kindergartenInfoAtom,
+  tacherInfoAtom
+} from "../../../store/kindergarten";
 import { useCallback, useEffect } from "react";
 
 const kindergartenController = () => {
-    const [kindergartenInfo, setKindergartenInfo] = 
+  const [kindergartenInfo, setKindergartenInfo] =
     useRecoilState<IKindergartenInfo>(kindergartenInfoAtom);
 
-useEffect(() => {
+  const [teacherInfo, setTeacherInfo] =
+    useRecoilState<ITeacherInfo[]>(tacherInfoAtom);
+
+  useEffect(() => {
     getKindergartenInfo(1);
-}, []);
+    getTeachersInfo(1);
+  }, []);
 
-const getKindergartenInfo = useCallback(
-    async(kindergartenId: number): Promise<void> =>{
-    try{
-        const {kindergarten, image}= await getKindergartenInfoApi(
-            kindergartenId
-        ); //임시로 1
-        console.log(kindergarten, image);
+  const getKindergartenInfo = useCallback(
+    async (kindergartenId: number): Promise<void> => {
+      try {
+        const { kindergarten, image } = await getKindergartenInfoApi(
+          kindergartenId
+        );
         setKindergartenInfo({
-            kindergartenId: kindergarten.kindergartenId,
-            name: kindergarten.name,
-            address: kindergarten.address,
-            phone: kindergarten.phone ? kindergarten.phone : undefined,
-            imageId: kindergarten.imageId ? kindergarten.imageId : undefined,
-            imageUrl: kindergarten.imageUrl ? kindergarten.imageUrl : undefined,
+          kindergartenId: kindergarten.kindergartenId,
+          name: kindergarten.name,
+          address: kindergarten.address,
+          phone: kindergarten.phone ? kindergarten.phone : undefined,
+          imageId: kindergarten.imageId ? kindergarten.imageId : undefined,
+          imageUrl: image.imageUrl ? image.imageUrl : undefined
         });
-    } catch(e:any){}
+      } catch (e: any) {}
     },
-    [setKindergartenInfo]
-);
+    [kindergartenInfo, setKindergartenInfo]
+  );
 
-    return{
-        kindergartenInfo,
-    };
+  const getTeachersInfo = useCallback(
+    async (kindergartenId: number): Promise<void> => {
+      try {
+        const data = await getTeachersInfoApi(kindergartenId);
+
+        const teacherInfoTemp: ITeacherInfo[] = [];
+        data.forEach((teacherData: ITeacherInfo) => {
+          const dataTemp = {
+            userId: teacherData.userId,
+            name: teacherData.name,
+            imageUrl: teacherData.imageUrl
+          };
+          teacherInfoTemp.push(dataTemp);
+        });
+        setTeacherInfo(teacherInfoTemp);
+      } catch (e: any) {}
+    },
+    [teacherInfo, setTeacherInfo]
+  );
+
+  return {
+    kindergartenInfo,
+    teacherInfo
+  };
 };
 
 export default kindergartenController;

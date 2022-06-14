@@ -1,5 +1,6 @@
 import { atom } from "recoil";
-import { IKindergartenInfo } from "../types/Kindergarten.type";
+import { IKindergartenJoinImage, IKindergartenInfo } from "../types/Kindergarten.type";
+import { imageConfig } from "../common/imageConfig";
 
 export const kindergartenInfoAtom = atom<IKindergartenInfo>({
   key: "kindergartenInfoAtom",

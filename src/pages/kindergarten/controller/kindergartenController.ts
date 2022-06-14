@@ -1,39 +1,40 @@
 import { getKindergartenInfoApi } from "../../../apis/KindergartenApis";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
-import { IKindergartenInfo } from "../../../types/Kindergarten.type";
-import { kindergartenInfoAtom } from "../../../store/kindergarten";
+import {IKindergartenInfo}from "../../../types/Kindergarten.type"
+import {kindergartenInfoAtom} from "../../../store/kindergarten"
 import { useCallback, useEffect } from "react";
 
 const kindergartenController = () => {
-  const [kindergartenInfo, setKindergartenInfo] =
+    const [kindergartenInfo, setKindergartenInfo] = 
     useRecoilState<IKindergartenInfo>(kindergartenInfoAtom);
 
-  useEffect(() => {
+useEffect(() => {
     getKindergartenInfo(1);
-  }, []);
+}, []);
 
-  const getKindergartenInfo = useCallback(
-    async (kindergartenId: number): Promise<void> => {
-      try {
-        const { kindergarten, image } = await getKindergartenInfoApi(
-          kindergartenId
-        );
+const getKindergartenInfo = useCallback(
+    async(kindergartenId: number): Promise<void> =>{
+    try{
+        const {kindergarten, image}= await getKindergartenInfoApi(
+            kindergartenId
+        ); //임시로 1
+        console.log(kindergarten, image);
         setKindergartenInfo({
-          kindergartenId: kindergarten.kindergartenId,
-          name: kindergarten.name,
-          address: kindergarten.address,
-          phone: kindergarten.phone ? kindergarten.phone : undefined,
-          imageId: kindergarten.imageId ? kindergarten.imageId : undefined,
-          imageUrl: kindergarten.imageUrl ? kindergarten.imageUrl : undefined,
+            kindergartenId: kindergarten.kindergartenId,
+            name: kindergarten.name,
+            address: kindergarten.address,
+            phone: kindergarten.phone ? kindergarten.phone : undefined,
+            imageId: kindergarten.imageId ? kindergarten.imageId : undefined,
+            imageUrl: kindergarten.imageUrl ? kindergarten.imageUrl : undefined,
         });
-      } catch (e: any) {}
+    } catch(e:any){}
     },
     [setKindergartenInfo]
-  );
+);
 
-  return {
-    kindergartenInfo,
-  };
+    return{
+        kindergartenInfo,
+    };
 };
 
 export default kindergartenController;

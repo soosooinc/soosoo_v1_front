@@ -5,4 +5,5 @@ const KindergartenView = () => {
   const {kindergartenInfo }= kindergartenController();
   return (<></>)
 }
+
 export default KindergartenView;

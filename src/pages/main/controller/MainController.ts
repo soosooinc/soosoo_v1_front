@@ -5,6 +5,8 @@ import { IUserInfo } from "../../../types/User.type";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
 import { userInfoAtom } from "../../../store/user";
 import { MainNoticeHeaderTag } from "../../../constants/constants";
+import { getNoticeApi } from "apis/NoticeApis";
+import { INotice } from "types/Notice.type";
 
 const MainController = () => {
   const [userInfo, setUserInfo] = useRecoilState<IUserInfo>(userInfoAtom);
@@ -12,10 +14,22 @@ const MainController = () => {
     useState<number>(0);
   const navigate = useNavigate();
   const mainNoticeHeaderTag = MainNoticeHeaderTag;
+  const [noticeInfo, setNoticeInfo] = useState<INotice[]>([]);
 
   useEffect(() => {
+    getNoticeHandler(1);
     getUserInfo(3);
   }, []);
+
+  const getNoticeHandler = useCallback(
+    async (kindergartenId: number): Promise<void> => {
+      try {
+        const data = await getNoticeApi(kindergartenId, "main", 0);
+        setNoticeInfo(data);
+      } catch (e: any) {}
+    },
+    [noticeInfo, setNoticeInfo]
+  );
 
   const getUserInfo = useCallback(
     async (userId: number): Promise<void> => {

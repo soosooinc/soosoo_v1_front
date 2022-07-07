@@ -6,7 +6,9 @@ export interface INoticeInfo {
   mainText: string;
   subText: string | undefined;
 }
-
+/**
+ * 공지사항 
+ */
 export interface INotice {
   noticeId: Number;
   imageId: Number;

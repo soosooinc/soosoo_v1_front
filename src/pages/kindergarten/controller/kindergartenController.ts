@@ -1,6 +1,7 @@
 import {
   getKindergartenInfoApi,
-  getTeachersInfoApi
+  getTeachersInfoApi,
+  searchUserNameApi
 } from "../../../apis/KindergartenApis";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
 import {
@@ -64,9 +65,17 @@ const kindergartenController = () => {
     [teacherInfo, setTeacherInfo]
   );
 
+  const searchUserName = (e: any) => {
+    try {
+      const data = searchUserNameApi(e.target.value);
+      console.log(data);
+    } catch (err: any) {}
+  };
+
   return {
     kindergartenInfo,
-    teacherInfo
+    teacherInfo,
+    searchUserName
   };
 };
 

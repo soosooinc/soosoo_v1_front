@@ -10,7 +10,7 @@ export const noticeInfoAtom = atom<INoticeInfo>({
     type: 0,
     mainText: "",
     subText: undefined,
-    createdAt: undefined,
+    createdAt: "",
     createdBy: ""
   },
 });

@@ -22,7 +22,9 @@ const noticeController = () => {
                 topId: data.topId,
                 type: data.type,
                 mainText: data.mainText,
-                subText: data.subText ? data.subText : undefined
+                subText: data.subText ? data.subText : undefined,
+                createdBy: data.createdBy,
+                createdAt: data.createdAt
             })
         }catch(e:any) {}
     }, [

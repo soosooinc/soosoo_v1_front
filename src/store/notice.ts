@@ -9,6 +9,8 @@ export const noticeInfoAtom = atom<INoticeInfo>({
     topId: 0,
     type: 0,
     mainText: "",
-    subText: undefined
+    subText: undefined,
+    createdAt: undefined,
+    createdBy: ""
   },
 });

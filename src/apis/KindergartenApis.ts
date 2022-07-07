@@ -28,3 +28,12 @@ export const searchUserNameApi = async (
   const { data } = await customAxios.get(url);
   return data.data;
 };
+
+export const addTeacherApi = async (
+  kindergartenId: number,
+  userId: number
+): Promise<void> => {
+  const url: string = `kindergarten/addTeacher?kindergartenId=${kindergartenId}&userId=${userId}`;
+  const { data } = await customAxios.get(url);
+  return data.data;
+};

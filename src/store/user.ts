@@ -12,6 +12,6 @@ export const userInfoAtom = atom<IUserInfo>({
     name: "",
     type: 0,
     phone: undefined,
-    email: undefined,
-  },
+    email: undefined
+  }
 });

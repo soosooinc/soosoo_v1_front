@@ -1,4 +1,5 @@
 import {
+  addTeacherApi,
   getKindergartenInfoApi,
   getTeachersInfoApi,
   searchUserNameApi
@@ -10,9 +11,12 @@ import {
 } from "../../../types/Kindergarten.type";
 import {
   kindergartenInfoAtom,
-  tacherInfoAtom
+  tacherInfoAtom,
+  userListAtom
 } from "../../../store/kindergarten";
 import { useCallback, useEffect } from "react";
+import { IUserInfo } from "types/User.type";
+import { userInfoAtom } from "store/user";
 
 const kindergartenController = () => {
   const [kindergartenInfo, setKindergartenInfo] =
@@ -20,6 +24,8 @@ const kindergartenController = () => {
 
   const [teacherInfo, setTeacherInfo] =
     useRecoilState<ITeacherInfo[]>(tacherInfoAtom);
+
+  const [userList, setUserList] = useRecoilState<IUserInfo[]>(userListAtom);
 
   useEffect(() => {
     getKindergartenInfo(1);
@@ -65,17 +71,33 @@ const kindergartenController = () => {
     [teacherInfo, setTeacherInfo]
   );
 
-  const searchUserName = (e: any) => {
-    try {
-      const data = searchUserNameApi(e.target.value);
-      console.log(data);
-    } catch (err: any) {}
-  };
+  const searchUserName = useCallback(
+    async (e: any): Promise<void> => {
+      try {
+        const data = await searchUserNameApi(e.target.value);
+        data.map((userData: IUserInfo) => {
+          return setUserList([...userList, userData]);
+        });
+      } catch (e: any) {}
+    },
+    [userList, setUserList]
+  );
+
+  const addTeacher = useCallback(
+    async (kindergartenId: number, userId: number) => {
+      try {
+        const data = await addTeacherApi(kindergartenId, userId);
+      } catch (e: any) {}
+    },
+    []
+  );
 
   return {
     kindergartenInfo,
     teacherInfo,
-    searchUserName
+    userList,
+    searchUserName,
+    addTeacher
   };
 };
 

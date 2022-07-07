@@ -6,7 +6,10 @@ const NoticeView = () => {
   const {noticeInfo} = noticeController();
   return (
     <StyledScreenWrapper>
-      <p>공지사항</p>
+      <p>{noticeInfo.mainText}</p>
+      <p>{noticeInfo.subText}</p>
+      <p>{noticeInfo.createdBy}</p>
+      <p>{noticeInfo.createdAt}</p>
     </StyledScreenWrapper>
   );
 };

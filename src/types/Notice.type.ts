@@ -5,6 +5,8 @@ export interface INoticeInfo {
   type: Number;
   mainText: string;
   subText: string | undefined;
+  createdAt: string;
+  createdBy: string;
 }
 
 /**
@@ -19,4 +21,5 @@ export interface INotice {
   mainText: string;
   subText: string | undefined;
   createdAt: string;
+  createdBy: string;
 }

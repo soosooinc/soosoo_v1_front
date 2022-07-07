@@ -7,6 +7,9 @@ export interface INoticeInfo {
   subText: string | undefined;
 }
 
+/**
+ * 공지사항 정보
+ */
 export interface INotice {
   noticeId: Number;
   imageId: Number;

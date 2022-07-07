@@ -3,11 +3,8 @@ import { convertCompilerOptionsFromJson } from "typescript";
 import kindergartenController from "../controller/kindergartenController";
 
 const KindergartenView = () => {
-  const { kindergartenInfo, teacherInfo } = kindergartenController();
-  
-  function deleteTeacher(kindergartenId: number, teacherId: number) {
-    console.log(kindergartenId, teacherId);
-  }
+  const { kindergartenInfo, teacherInfo, deleteTeacher } =
+    kindergartenController();
 
   const teachersList = teacherInfo.map(teacher => (
     <>

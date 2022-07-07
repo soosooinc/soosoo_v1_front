@@ -26,6 +26,7 @@ const MainController = () => {
       try {
         const data = await getNoticeApi(kindergartenId, "main", 0);
         setNoticeInfo(data);
+        console.log(data);
       } catch (e: any) {}
     },
     [noticeInfo, setNoticeInfo]

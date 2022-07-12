@@ -1,6 +1,9 @@
 import {
+  addTeacherApi,
+  deleteTeacherApi,
   getKindergartenInfoApi,
-  getTeachersInfoApi
+  getTeachersInfoApi,
+  searchUserNameApi
 } from "../../../apis/KindergartenApis";
 import { Resetter, useRecoilState, useResetRecoilState } from "recoil";
 import {
@@ -9,9 +12,12 @@ import {
 } from "../../../types/Kindergarten.type";
 import {
   kindergartenInfoAtom,
-  tacherInfoAtom
+  tacherInfoAtom,
+  userListAtom
 } from "../../../store/kindergarten";
 import { useCallback, useEffect } from "react";
+import { IUserInfo } from "types/User.type";
+import { userInfoAtom } from "store/user";
 
 const kindergartenController = () => {
   const [kindergartenInfo, setKindergartenInfo] =
@@ -19,6 +25,8 @@ const kindergartenController = () => {
 
   const [teacherInfo, setTeacherInfo] =
     useRecoilState<ITeacherInfo[]>(tacherInfoAtom);
+
+  const [userList, setUserList] = useRecoilState<IUserInfo[]>(userListAtom);
 
   useEffect(() => {
     getKindergartenInfo(1);
@@ -64,9 +72,46 @@ const kindergartenController = () => {
     [teacherInfo, setTeacherInfo]
   );
 
+  const searchUserName = useCallback(
+    async (e: any): Promise<void> => {
+      try {
+        const data = await searchUserNameApi(e.target.value);
+        data.map((userData: IUserInfo) => {
+          return setUserList([...userList, userData]);
+        });
+      } catch (e: any) {}
+    },
+    [userList, setUserList]
+  );
+
+  const addTeacher = useCallback(
+    async (kindergartenId: number, userId: number) => {
+      try {
+        const data = await addTeacherApi(kindergartenId, userId);
+        } catch (e: any) {}
+    },
+    []
+  );
+  
+  const deleteTeacher = useCallback(
+    async (kindergartenId: number, teacherId: number): Promise<void> => {
+      try {
+        console.log(kindergartenId, teacherId);
+        const data = await deleteTeacherApi(kindergartenId, teacherId);
+
+        //todo : if status is SUCCESS, delete teacher on view page (setTeacherInfo??)
+      } catch (e: any) {}
+    },
+    []
+  );
+
   return {
     kindergartenInfo,
-    teacherInfo
+    teacherInfo,
+    userList,
+    searchUserName,
+    addTeacher
+    deleteTeacher
   };
 };
 

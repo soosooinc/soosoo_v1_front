@@ -1,4 +1,5 @@
 import {
+  deleteTeacherApi,
   getKindergartenInfoApi,
   getTeachersInfoApi
 } from "../../../apis/KindergartenApis";
@@ -64,9 +65,22 @@ const kindergartenController = () => {
     [teacherInfo, setTeacherInfo]
   );
 
+  const deleteTeacher = useCallback(
+    async (kindergartenId: number, teacherId: number): Promise<void> => {
+      try {
+        console.log(kindergartenId, teacherId);
+        const data = await deleteTeacherApi(kindergartenId, teacherId);
+
+        //todo : if status is SUCCESS, delete teacher on view page (setTeacherInfo??)
+      } catch (e: any) {}
+    },
+    []
+  );
+
   return {
     kindergartenInfo,
-    teacherInfo
+    teacherInfo,
+    deleteTeacher
   };
 };
 

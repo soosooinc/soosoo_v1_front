@@ -1,4 +1,5 @@
 import { StyledScreenWrapper } from "components/ScreenWrapper/styles";
+import { convertCompilerOptionsFromJson } from "typescript";
 import kindergartenController from "../controller/kindergartenController";
 
 const KindergartenView = () => {
@@ -9,7 +10,7 @@ const KindergartenView = () => {
     searchUserName,
     addTeacher
   } = kindergartenController();
-
+  
   const userListView = userList.map(user => (
     <>
       <p key={user.name}>{user.name}</p>
@@ -19,7 +20,21 @@ const KindergartenView = () => {
         }}
       >
         추가
-      </button>
+        </button>
+    </>
+  ));
+
+  const teachersList = teacherInfo.map(teacher => (
+    <>
+      <li key={teacher.userId}>{teacher.name}</li>
+      <li key={teacher.userId}>{teacher.userId}</li>
+      <button
+        onClick={() => {
+          deleteTeacher(kindergartenInfo.kindergartenId, teacher.userId);
+        }}
+      >
+        삭제
+        </button>
     </>
   ));
 
@@ -27,6 +42,7 @@ const KindergartenView = () => {
     <StyledScreenWrapper>
       <input type="text" onChange={searchUserName} />
       <ul>{userListView}</ul>
+      <ul>{teachersList}</ul>
     </StyledScreenWrapper>
   );
 };

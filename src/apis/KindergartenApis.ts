@@ -37,3 +37,12 @@ export const addTeacherApi = async (
   const { data } = await customAxios.get(url);
   return data.data;
 };
+
+export const deleteTeacherApi = async (
+  kindergartenId: number,
+  teacherId: number
+): Promise<void> => {
+  const url: string = `kindergarten/deleteTeacher?kindergartenId=${kindergartenId}&userId=${teacherId}`;
+  const { data } = await customAxios.get(url);
+  return data.data;
+};

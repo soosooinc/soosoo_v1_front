@@ -1,5 +1,5 @@
 export interface IUserInfo {
-  userId: Number;
+  userId: number;
   kindergartenName: string;
   imageUrl: string | undefined;
   id: string;
